@@ -1,7 +1,4 @@
-let arr=[13,43,3,24];
-let a=(b)=>{
-    console.log(b);
-}
+import Search from './model/Search'
 
-let arr2=[...arr,4,5];
-a(arr2);
+let search=new Search('pasta');
+search.doSearch().then(a=>console.log(a)).catch();

@@ -1,0 +1,1 @@
+(self.webpackChunkrecipe_website=self.webpackChunkrecipe_website||[]).push([[179],{497:()=>{console.log(4)}},e=>{e(e.s=497)}]);

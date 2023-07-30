@@ -1,36 +1,39 @@
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path=require("path");
 
-module.exports={
-    entry: './src/js/index.js',
-    output: {
-        filename: "[name].bundle.js",
-        path: path.resolve(__dirname,'docs'),
-    },
-    
-    module: {
-        rules: [
-          {
-            test: /\.m?js$/,
-            exclude: /node_modules/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                presets: [
-                  ['@babel/preset-env', { targets: "defaults" }]
-                ]
-              }
-            }
+module.exports = {
+  mode: 'none',
+  entry: './src/js/index.js',
+  output: {
+    filename:  '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  devServer: {
+    static: './dist',
+  },
+  plugins: [
+    new HtmlWebpackPlugin({ 
+      filename: 'index.html',
+      template: 'src/index.html'
+    })
+  ],
+  optimization: {
+    runtimeChunk: 'single',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(?:js|mjs|cjs)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', { targets: "defaults" }]
+            ]
           }
-        ]
-      },
-    plugins: [
-      new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: 'src/index.html'
-        })
-    ],
-    devServer:{
-        contentBase: 'docs',
-    }
-}
+        }
+      }
+    ]
+  }
+};
